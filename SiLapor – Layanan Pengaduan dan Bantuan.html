@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SiLapor – Layanan Pengaduan &amp; Bantuan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f1ff;--sf:#fff;--tint:#f1ebff;--line:#e3dcf5;--ink:#1c192b;--mute:#605c71;--pri:#5427e6;--pri2:#6d4aff;--on:#fff;
+--pb:#fef3c7;--pf:#b45309;--db:#dbeafe;--df:#1d4ed8;--sb:#d1fae5;--sfg:#047857;--err:#c0261d;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13101d;--sf:#1c182b;--tint:#2a2342;--line:#3a3158;--ink:#eeeaf9;--mute:#aaa3c4;--pri:#9b82ff;--pri2:#b3a1ff;--on:#150d38;--pb:#3b2c0b;--pf:#f6c565;--db:#15284d;--df:#9dc0ff;--sb:#10352a;--sfg:#7fdcb5;--err:#ff8f86}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,"Segoe UI",sans-serif}
+.app{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+aside{background:var(--sf);border-right:1px solid var(--line);padding:22px 16px;position:sticky;top:0;align-self:start;height:100vh}
+.brand{display:flex;gap:10px;align-items:center;margin-bottom:26px}
+.logo{width:40px;height:40px;border-radius:10px;background:var(--pri);color:var(--on);display:grid;place-items:center;font-weight:700}
+.brand b{display:block;line-height:1.1}.brand small{color:var(--mute);font-size:.75rem}
+.lab{font-size:.75rem;color:var(--mute);font-weight:600;margin:0 8px 8px}
+nav a{display:block;padding:10px 12px;border-radius:8px;color:var(--mute);text-decoration:none;font-weight:500;margin-bottom:2px}
+nav a[aria-current]{background:var(--tint);color:var(--pri);font-weight:600}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--pri2);outline-offset:2px}
+.who{position:absolute;bottom:20px;left:16px;right:16px;padding:12px;border-radius:10px;background:var(--tint);font-size:.85rem}
+.who span{color:var(--mute);display:block;font-size:.75rem}
+main{padding:28px 32px 48px;min-width:0}
+.crumb{color:var(--mute);font-size:.85rem;margin-bottom:6px}
+h1{margin:0 0 4px;font-size:1.7rem;letter-spacing:-.02em}h2{margin:0 0 2px;font-size:1.05rem}
+.sub{color:var(--mute);margin:0 0 22px;max-width:62ch}
+view{display:none}view.on{display:block}
+.card{background:var(--sf);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.grid2{display:grid;grid-template-columns:1.25fr 1fr;gap:18px}.grid2>.card{margin:0}
+.kpi{background:var(--sf);border:1px solid var(--line);border-radius:14px;padding:16px}
+.kpi.main{background:var(--pri);color:var(--on);border-color:var(--pri)}
+.kpi small{display:block;opacity:.8}.kpi b{font-size:2rem;line-height:1.2;display:block}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.78rem;font-weight:600}
+.Pending{background:var(--pb);color:var(--pf)}.Diproses{background:var(--db);color:var(--df)}.Selesai{background:var(--sb);color:var(--sfg)}
+.donutw{display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.donut{width:150px;height:150px;border-radius:50%;display:grid;place-items:center}
+.donut div{width:98px;height:98px;border-radius:50%;background:var(--sf);display:grid;place-content:center;text-align:center}
+.donut b{font-size:1.6rem;line-height:1}.donut small{color:var(--mute)}
+.leg div{display:flex;gap:8px;align-items:center;margin:4px 0}.dot{width:10px;height:10px;border-radius:50%}
+.bar{margin:12px 0}.bar p{display:flex;justify-content:space-between;margin:0 0 4px;font-size:.88rem}
+.bar i{display:block;height:8px;border-radius:4px;background:var(--tint)}.bar i u{display:block;height:100%;border-radius:4px;background:var(--pri)}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:760px}
+th{text-align:left;font-size:.75rem;color:var(--mute);font-weight:600;padding:10px 8px;border-bottom:1px solid var(--line)}
+td{padding:12px 8px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:.9rem}
+tr:last-child td{border-bottom:0}.nt{font-weight:600;color:var(--pri);white-space:nowrap}
+.av{width:32px;height:32px;border-radius:50%;background:var(--tint);color:var(--pri);display:inline-grid;place-items:center;font-weight:700;font-size:.75rem;margin-right:8px;vertical-align:middle}
+.sm{color:var(--mute);font-size:.8rem}
+button,.btn{font:inherit;font-weight:600;border:0;border-radius:10px;padding:10px 18px;background:var(--pri);color:var(--on);cursor:pointer}
+button.o{background:transparent;color:var(--pri);border:1.5px solid var(--line)}button.s{padding:5px 12px;font-size:.82rem;border-radius:8px}
+.bar2{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.bar2>*{flex:1 1 160px}.bar2 input{flex:3 1 260px}
+label{display:block;font-weight:600;margin:16px 0 6px}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{min-height:140px;resize:vertical}.bad{border-color:var(--err)}.e{color:var(--err);font-size:.85rem;min-height:1.2em;margin-top:3px}
+.hint{display:flex;justify-content:space-between;color:var(--mute);font-size:.8rem;margin-top:3px}
+.banner{background:var(--tint);border-radius:12px;padding:14px 16px;margin-bottom:18px}
+.banner b{color:var(--pri)}
+.drop{border:2px dashed var(--line);border-radius:12px;padding:18px;text-align:center;color:var(--mute);cursor:pointer;display:block;font-weight:400;margin:0}
+.chk{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-weight:400}.chk input{width:auto;margin-top:4px}
+.acts{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.steps3 div{background:var(--tint);border-radius:12px;padding:14px}
+.steps3 b{color:var(--pri)}.steps3 p{margin:4px 0 0;font-size:.85rem;color:var(--mute)}
+.ok{background:var(--sb);color:var(--sfg);border-radius:12px;padding:16px;margin-top:16px}.ok b{display:block;font-size:1.3rem}
+.stp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stp div{padding:12px;border-radius:12px;border:1.5px solid var(--line);font-size:.88rem}
+.stp div.done{background:var(--tint);border-color:var(--pri2)}.stp div.act{border-color:var(--pri);box-shadow:inset 0 0 0 1px var(--pri)}
+.det{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}.det>.card{margin:0}
+.kv{margin:0 0 14px}.kv small{display:block;color:var(--mute);font-weight:600;font-size:.75rem}
+.tl{border-left:2px solid var(--line);margin-left:6px;padding-left:16px}.tl div{margin-bottom:14px;position:relative}
+.tl div:before{content:"";position:absolute;left:-23px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--pri)}
+.empty{color:var(--mute);padding:14px 0}
+@media (max-width:900px){.app{grid-template-columns:1fr}aside{position:static;height:auto;padding:14px}.who,.lab{display:none}
+.brand{margin-bottom:10px}nav{display:flex;gap:4px;overflow-x:auto}nav a{white-space:nowrap}main{padding:18px 14px 40px}
+.grid4{grid-template-columns:1fr 1fr}.grid2,.det,.steps3,.stp{grid-template-columns:1fr}}
+</style></head><body>
+<div class="app">
+<aside>
+ <div class="brand"><div class="logo">SL</div><div><b>SiLapor</b><small>Layanan Pengaduan &amp; Bantuan</small></div></div>
+ <div class="lab">Menu utama</div>
+ <nav id="nav"><a href="#dashboard">Dashboard</a><a href="#buat">Buat Pengaduan</a><a href="#lacak">Lacak Tiket</a><a href="#daftar">Daftar Tiket</a></nav>
+ <div class="who">Petugas Helpdesk<span id="mode"></span></div>
+</aside>
+<main>
+
+<view id="dashboard">
+ <div class="crumb">Portal SiLapor</div>
+ <h1>Selamat datang, Petugas Helpdesk</h1><p class="sub">Ringkasan pengaduan masuk dan perkembangan penanganannya.</p>
+ <div class="grid4" id="kpi"></div>
+ <div class="grid2">
+  <div class="card"><h2>Distribusi status tiket</h2><span class="sm">Komposisi pengaduan menurut tahap penanganan</span><div class="donutw" id="donut"></div></div>
+  <div class="card"><h2>Laporan menurut kategori</h2><span class="sm">Bidang aduan yang paling sering diterima</span><div id="cats"></div></div>
+ </div>
+ <div class="card" style="margin-top:18px"><div style="display:flex;justify-content:space-between;align-items:center"><div><h2>Pengaduan terbaru</h2><span class="sm">Empat laporan terakhir</span></div><button class="o s" onclick="location.hash='daftar'">Lihat semua</button></div><div class="tw" id="recent"></div></div>
+</view>
+
+<view id="buat">
+ <div class="crumb">Portal SiLapor / Buat Pengaduan</div>
+ <h1>Buat pengaduan</h1><p class="sub">Sampaikan aspirasi, kendala teknis, atau keluhan fasilitas kampus secara langsung dan transparan.</p>
+ <div class="banner"><b>Komitmen penanganan 1×24 jam.</b> Setiap laporan diverifikasi dan diteruskan ke unit terkait dalam maksimal 1×24 jam kerja.</div>
+ <div class="card"><h2>Detail laporan pengaduan</h2><span class="sm">Tanda (*) wajib diisi</span>
+  <form id="f" novalidate onsubmit="return false">
+   <label for="nama">Nama pelapor *</label><input id="nama" maxlength="100" placeholder="Masukkan nama lengkap Anda"><div class="e" id="e-nama"></div>
+   <label for="kat">Kategori pengaduan *</label><select id="kat"><option value="">Pilih kategori yang sesuai…</option></select><div class="e" id="e-kat"></div>
+   <label for="subj">Subjek / judul laporan</label><input id="subj" maxlength="120" placeholder="Contoh: Koneksi portal akademik terputus di Gedung TI">
+   <label for="desk">Deskripsi pengaduan *</label><textarea id="desk" maxlength="2000" placeholder="Jelaskan kronologi, lokasi, atau detail kendala yang dialami secara rinci…"></textarea>
+   <div class="hint"><span class="e" id="e-desk"></span><span id="cnt">0/2000</span></div>
+   <label>Lampiran pendukung (opsional)</label>
+   <label class="drop" for="file"><span id="fn">Pilih berkas PNG, JPG, atau PDF, maksimal 5 MB</span></label><input id="file" type="file" accept=".png,.jpg,.jpeg,.pdf" hidden><div class="e" id="e-file"></div>
+   <label class="chk"><input type="checkbox" id="prot"><span>Ajukan sebagai laporan terlindungi. Identitas hanya dapat dilihat admin verifikator dan disamarkan dari unit pelaksana.</span></label>
+   <div class="acts"><button type="reset" class="o" id="batal">Batal</button><button id="kirim">Kirim pengaduan</button></div>
+  </form><div id="hasil"></div>
+ </div>
+ <div class="card"><h2>Alur penanganan</h2><span class="sm">Tahapan yang dilalui laporan Anda setelah terkirim</span>
+  <div class="steps3" style="margin-top:12px"><div><b>1. Tiket diterbitkan</b><p>Sistem membuat nomor tiket unik untuk pemantauan.</p></div><div><b>2. Verifikasi dan disposisi</b><p>Admin menelaah laporan lalu meneruskannya ke bagian terkait.</p></div><div><b>3. Selesai</b><p>Perbaikan tuntas dan status tiket menjadi Selesai.</p></div></div></div>
+</view>
+
+<view id="lacak">
+ <div class="crumb">Portal SiLapor / Lacak Tiket</div>
+ <h1>Lacak tiket pengaduan</h1><p class="sub">Pantau status penanganan dan riwayat laporan Anda memakai nomor tiket.</p>
+ <div class="card"><label for="cari" style="margin-top:0">Nomor tiket</label>
+  <div style="display:flex;gap:10px"><input id="cari" placeholder="SLP-2026-0001"><button id="bCari">Cari tiket</button></div><div class="e" id="e-cari"></div></div>
+ <div id="lacakOut"></div>
+</view>
+
+<view id="daftar">
+ <div class="crumb">Portal SiLapor / Daftar Tiket</div>
+ <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:start"><div><h1>Daftar tiket pengaduan</h1><p class="sub">Kelola, tinjau progres, dan disposisikan seluruh keluhan sivitas akademika Politeknik Negeri Cilacap.</p></div><button onclick="location.hash='buat'">Buat pengaduan baru</button></div>
+ <div class="grid4" id="kpi2" style="grid-template-columns:repeat(4,1fr)"></div>
+ <div class="card"><div class="bar2"><input id="q" placeholder="Cari nomor tiket, nama pelapor, atau kata kunci…"><select id="fk"><option value="">Semua kategori</option></select><select id="fs"><option value="">Semua status</option><option>Pending</option><option>Diproses</option><option>Selesai</option></select><button class="o" id="reset">Reset filter</button></div>
+ <div class="tw" id="tbl"></div></div>
+</view>
+
+</main></div>
+<script>
+// Isi untuk memakai Supabase (jalankan file ini di hosting sendiri). Lihat catatan kolom `subjek`.
+const SUPABASE_URL="",SUPABASE_KEY="";
+const USE_DB=!!(SUPABASE_URL&&SUPABASE_KEY),$=id=>document.getElementById(id);
+const STATUS=["Pending","Diproses","Selesai"],COL={Pending:"#f59e0b",Diproses:"#2563eb",Selesai:"#059669"};
+const CATS=["Kendala Teknis (IT & Sistem Kampus)","Layanan Akademik & Administrasi","Sarana & Prasarana Gedung","Layanan Umum & Kemahasiswaan"];
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const H=36e5,ago=h=>new Date(Date.now()-h*H).toISOString();
+const SEED=[
+[1,"SLP-2026-0001","Rina Wulandari",CATS[0],"Koneksi portal internal PNC timeout saat unggah dokumen","Saat mengunggah PDF laporan PKL ke SIAKAD, browser menampilkan galat Gateway Time-out 504. Ukuran berkas hanya 1,8 MB. Mohon cek server berkas.","Selesai",3],
+[2,"SLP-2026-0002","Dimas Pratama",CATS[2],"Proyektor Ruang Teori 3 mati total","Proyektor di Ruang Teori 3 Gedung Bersama mati total dan tidak menyala sama sekali sejak pagi.","Diproses",2],
+[3,"SLP-2026-0003","Siti Nurhaliza",CATS[1],"Pembayaran UKT belum terverifikasi","Sinkronisasi pembayaran UKT mahasiswa semester genap belum terverifikasi di sistem keuangan.","Pending",26],
+[4,"SLP-2026-0004","Budi Santoso",CATS[0],"Akun SIAKAD terkunci","Akun SIAKAD terkunci setelah salah memasukkan sandi tiga kali. Mohon bantuan pembukaan kunci.","Diproses",30],
+[5,"SLP-2026-0005","Dr. Agus Setiawan",CATS[3],"Izin penggunaan aula serbaguna","Mengajukan izin penggunaan aula serbaguna untuk seminar teknologi energi bulan depan.","Selesai",50],
+[6,"SLP-2026-0006","Maya Indah",CATS[0],"Galat unggah logbook magang","Terjadi error saat mengunggah logbook magang industri ke portal.","Selesai",75]
+].map(r=>({id:r[0],nomor_tiket:r[1],nama_pelapor:r[2],kategori:r[3],subjek:r[4],deskripsi:r[5],status:r[6],created_at:ago(r[7])}));
+let mem=null;const LS="silapor_v2";
+const loc=()=>{if(mem)return mem;try{const r=localStorage.getItem(LS);if(r)return mem=JSON.parse(r)}catch(e){}return mem=JSON.parse(JSON.stringify(SEED))};
+const sv=()=>{try{localStorage.setItem(LS,JSON.stringify(mem))}catch(e){}};
+async function rest(p,o={}){const r=await fetch(SUPABASE_URL+"/rest/v1/tickets"+p,{...o,headers:{apikey:SUPABASE_KEY,Authorization:"Bearer "+SUPABASE_KEY,"Content-Type":"application/json",Prefer:"return=representation"}});if(!r.ok)throw new Error(await r.text()||r.status);return r.status===204?[]:r.json()}
+const db={
+ list:async()=>USE_DB?rest("?select=*&order=id.desc"):[...loc()].sort((a,b)=>b.id-a.id),
+ async num(){const y=new Date().getFullYear(),n=(await db.list()).filter(t=>t.nomor_tiket.startsWith("SLP-"+y)).length+1;return`SLP-${y}-${String(n).padStart(4,"0")}`},
+ async add(t){if(USE_DB)return(await rest("",{method:"POST",body:JSON.stringify(t)}))[0];const a=loc(),r={id:Math.max(0,...a.map(x=>x.id))+1,...t,created_at:new Date().toISOString()};a.push(r);sv();return r},
+ async find(n){if(USE_DB)return(await rest("?nomor_tiket=eq."+encodeURIComponent(n)+"&select=*"))[0];return loc().find(t=>t.nomor_tiket.toLowerCase()===n.toLowerCase())},
+ async set(id,s){if(!STATUS.includes(s))return;if(USE_DB)return rest("?id=eq."+id,{method:"PATCH",body:JSON.stringify({status:s})});loc().find(t=>t.id===id).status=s;sv()}
+};
+const two=n=>String(n).padStart(2,"0");
+function when(iso){const d=new Date(iso),n=new Date(),dd=Math.floor((new Date(n.getFullYear(),n.getMonth(),n.getDate())-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/864e5),hm=`${two(d.getHours())}.${two(d.getMinutes())} WIB`;
+ return dd<=0?"Hari ini, "+hm:dd===1?"Kemarin, "+hm:dd+" hari lalu"}
+const full=iso=>new Date(iso).toLocaleString("id-ID",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"})+" WIB";
+const bdg=s=>`<span class="badge ${s}">${s}</span>`,ini=n=>n.split(" ").filter(w=>/^[A-Za-z]/.test(w)).slice(0,2).map(w=>w[0]).join("").toUpperCase();
+const catShort=c=>c.replace(/ \(.*\)/,"");
+function rows(ts,act){return ts.length?`<table><thead><tr><th>Nomor tiket</th><th>Pelapor</th><th>Kategori</th>${act?"<th>Deskripsi singkat</th>":""}<th>Waktu</th><th>Status</th><th>Aksi</th></tr></thead><tbody>${ts.map(t=>`<tr><td class="nt">${esc(t.nomor_tiket)}</td><td><span class="av">${esc(ini(t.nama_pelapor))}</span>${esc(t.nama_pelapor)}</td><td>${esc(catShort(t.kategori))}</td>${act?`<td>${esc(t.subjek||t.deskripsi.slice(0,60))}</td>`:""}<td class="sm">${when(t.created_at)}</td><td>${bdg(t.status)}</td><td style="white-space:nowrap">${act&&t.status!=="Selesai"?`<button class="s" data-adv="${t.id}" data-st="${t.status}">${t.status==="Pending"?"Proses":"Selesaikan"}</button> `:""}<button class="s o" data-open="${esc(t.nomor_tiket)}">Lihat detail</button></td></tr>`).join("")}</tbody></table>`:`<p class="empty">Tidak ada tiket yang cocok.</p>`}
+const cnt=(a,s)=>a.filter(t=>t.status===s).length;
+async function dash(){const a=await db.list(),n=a.length||1,p=cnt(a,"Pending"),d=cnt(a,"Diproses"),s=cnt(a,"Selesai");
+ $("kpi").innerHTML=`<div class="kpi main"><small>Total laporan masuk</small><b>${a.length}</b><small>tiket total</small></div><div class="kpi"><small>Sedang ditangani</small><b>${d}</b><small>tiket diproses</small></div><div class="kpi"><small>Terselesaikan</small><b>${s}</b><small>tingkat ${Math.round(s/n*100)}%</small></div><div class="kpi"><small>Perlu tindakan</small><b>${p}</b><small>menunggu verifikasi</small></div>`;
+ let acc=0;const seg=STATUS.map(k=>{const v=cnt(a,k)/n*100,r=`${COL[k]} ${acc}% ${acc+v}%`;acc+=v;return r}).join(",");
+ $("donut").innerHTML=`<div class="donut" style="background:conic-gradient(${seg})"><div><b>${a.length}</b><small>Total tiket</small></div></div><div class="leg">${STATUS.map(k=>`<div><i class="dot" style="background:${COL[k]}"></i>${k}: <b>${cnt(a,k)}</b> (${(cnt(a,k)/n*100).toFixed(1)}%)</div>`).join("")}</div>`;
+ $("cats").innerHTML=CATS.map(c=>{const v=a.filter(t=>t.kategori===c).length;return`<div class="bar"><p><span>${esc(c)}</span><b>${v} tiket</b></p><i><u style="width:${v/n*100}%"></u></i></div>`}).join("");
+ $("recent").innerHTML=rows(a.slice(0,4),false)}
+function stepper(s){const i=STATUS.indexOf(s),L=["1. Pending dan verifikasi","2. Sedang diproses","3. Selesai"];return`<div class="stp">${L.map((l,k)=>`<div class="${k<i?"done":k===i?"act":""}"><b>${l}</b><div class="sm">${k<i?"Tahap terlewati":k===i?"Tahap saat ini":"Menunggu"}</div></div>`).join("")}</div>`}
+function detail(t){const i=STATUS.indexOf(t.status),h=[];
+ if(i>=2)h.push(["Tiket selesai ditangani","Petugas menandai laporan telah terselesaikan."]);
+ if(i>=1)h.push(["Disposisi penanganan","Laporan diteruskan ke unit terkait untuk ditindaklanjuti."]);
+ h.push(["Tiket terdaftar","Laporan dibuat oleh "+(t.terlindungi?"pelapor (identitas dilindungi)":t.nama_pelapor)+" dan masuk antrean verifikasi.",full(t.created_at)]);
+ $("lacakOut").innerHTML=`<div class="card"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div><h2>${esc(t.nomor_tiket)}</h2><span class="sm">${esc(t.subjek||"Tanpa subjek")} · Diajukan ${when(t.created_at)}</span></div><div>Status terkini: ${bdg(t.status)}</div></div>${stepper(t.status)}</div>
+ <div class="det"><div class="card"><h2>Rincian laporan</h2><div style="margin-top:14px"><div class="kv"><small>Pelapor</small>${esc(t.nama_pelapor)}</div><div class="kv"><small>Kategori</small>${esc(t.kategori)}</div><div class="kv"><small>Waktu pembuatan</small>${full(t.created_at)}</div><div class="kv"><small>Deskripsi lengkap</small>${esc(t.deskripsi)}</div>${t.lampiran?`<div class="kv"><small>Lampiran</small>${esc(t.lampiran)}</div>`:""}</div><button class="o" onclick="window.print()">Cetak bukti laporan</button></div>
+ <div class="card"><h2>Riwayat tindak lanjut</h2><div class="tl" style="margin-top:14px">${h.map(x=>`<div><b>${x[0]}</b><p style="margin:2px 0;color:var(--mute);font-size:.88rem">${esc(x[1])}</p>${x[2]?`<span class="sm">${x[2]}</span>`:""}</div>`).join("")}</div></div></div>`}
+async function cari(){const no=$("cari").value.trim();$("e-cari").textContent=no?"":"Masukkan nomor tiket, misalnya SLP-2026-0001.";$("lacakOut").innerHTML="";if(!no)return;
+ try{const t=await db.find(no);t?detail(t):$("lacakOut").innerHTML=`<p class="empty">Tiket ${esc(no)} tidak ditemukan. Periksa kembali nomornya.</p>`}catch(e){$("e-cari").textContent="Gagal mencari tiket: "+e.message}}
+$("bCari").onclick=cari;$("cari").onkeydown=e=>{if(e.key==="Enter")cari()};
+async function daftar(){const a=await db.list(),q=$("q").value.toLowerCase(),k=$("fk").value,s=$("fs").value;
+ $("kpi2").innerHTML=[["Semua tiket",a.length],["Pending",cnt(a,"Pending")],["Diproses",cnt(a,"Diproses")],["Selesai",cnt(a,"Selesai")]].map((x,i)=>`<div class="kpi ${i?"":"main"}"><small>${x[0]}</small><b>${x[1]}</b></div>`).join("");
+ const f=a.filter(t=>(!k||t.kategori===k)&&(!s||t.status===s)&&(!q||(t.nomor_tiket+t.nama_pelapor+(t.subjek||"")+t.deskripsi).toLowerCase().includes(q)));
+ $("tbl").innerHTML=rows(f,true)}
+["q","fk","fs"].forEach(i=>$(i).addEventListener("input",daftar));
+$("reset").onclick=()=>{$("q").value=$("fk").value=$("fs").value="";daftar()};
+document.addEventListener("click",async e=>{const o=e.target.dataset.open,v=e.target.dataset.adv;
+ if(o){$("cari").value=o;location.hash="lacak";cari()}
+ if(v){await db.set(+v,e.target.dataset.st==="Pending"?"Diproses":"Selesai");daftar()}});
+CATS.forEach(c=>{$("kat").add(new Option(c,c));$("fk").add(new Option(c,c))});
+$("desk").oninput=()=>$("cnt").textContent=$("desk").value.length+"/2000";
+$("file").onchange=()=>{const f=$("file").files[0];$("e-file").textContent="";if(!f){$("fn").textContent="Pilih berkas PNG, JPG, atau PDF, maksimal 5 MB";return}
+ if(f.size>5*1048576){$("e-file").textContent="Ukuran berkas melebihi 5 MB.";$("file").value="";return}$("fn").textContent=f.name};
+const er=(id,m)=>{$("e-"+id).textContent=m;$(id)&&$(id).classList.toggle("bad",!!m)};
+$("batal").onclick=()=>{["nama","kat","desk"].forEach(i=>er(i,""));$("fn").textContent="Pilih berkas PNG, JPG, atau PDF, maksimal 5 MB";$("cnt").textContent="0/2000";$("hasil").innerHTML=""};
+$("kirim").onclick=async()=>{const nama=$("nama").value.trim(),kat=$("kat").value,desk=$("desk").value.trim();
+ er("nama",nama?"":"Nama pelapor wajib diisi.");er("kat",kat?"":"Pilih salah satu kategori.");er("desk",desk?"":"Deskripsi wajib diisi dan tidak boleh hanya berisi spasi.");
+ if(!nama||!kat||!desk)return;$("kirim").disabled=true;
+ try{const t={nomor_tiket:await db.num(),nama_pelapor:nama,kategori:kat,deskripsi:desk,status:"Pending"};
+  if(!USE_DB){t.subjek=$("subj").value.trim();t.terlindungi=$("prot").checked;const f=$("file").files[0];if(f)t.lampiran=f.name}
+  else if($("subj").value.trim())t.subjek=$("subj").value.trim();
+  const r=await db.add(t);$("hasil").innerHTML=`<div class="ok" role="status">Pengaduan terkirim. Simpan nomor tiket Anda:<b>${esc(r.nomor_tiket)}</b>Status awal: Pending. Pantau lewat menu Lacak tiket.</div>`;$("f").reset();$("batal").click();$("hasil").innerHTML=`<div class="ok" role="status">Pengaduan terkirim. Simpan nomor tiket Anda:<b>${esc(r.nomor_tiket)}</b>Status awal: Pending. Pantau lewat menu Lacak tiket.</div>`}
+ catch(e){$("hasil").innerHTML=`<div class="e">Pengaduan gagal dikirim: ${esc(e.message)}</div>`}$("kirim").disabled=false};
+$("mode").textContent=USE_DB?"Terhubung ke Supabase":"Mode demo (data di browser ini)";
+const V=["dashboard","buat","lacak","daftar"];
+function route(){const v=V.includes(location.hash.slice(1))?location.hash.slice(1):"dashboard";
+ V.forEach(x=>$(x).classList.toggle("on",x===v));
+ document.querySelectorAll("#nav a").forEach(a=>a.getAttribute("href")==="#"+v?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current"));
+ const fail=e=>{$(v==="dashboard"?"recent":"tbl").innerHTML=`<div class="e">Gagal memuat data: ${esc(e.message)}</div>`};
+ if(v==="dashboard")dash().catch(fail);if(v==="daftar")daftar().catch(fail)}
+addEventListener("hashchange",route);route();
+</script></body></html>
